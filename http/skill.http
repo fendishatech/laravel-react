@@ -1,0 +1,32 @@
+# CREATE A SKILL
+###
+POST http://localhost:8000/api/v1/skills HTTP/1.1
+content-type: application/json
+
+{
+    "name" : "food painting",
+    "slug" : "food-painting"
+}
+
+# GET ALL SKILLS
+###
+GET http://localhost:8000/api/v1/skills HTTP/1.1
+
+# GET SINGLE SKILLS
+###
+GET http://localhost:8000/api/v1/skills/2 HTTP/1.1
+
+# UPDATE SINGLE SKILL
+###
+PUT http://localhost:8000/api/v1/skills/2 HTTP/1.1
+content-type: application/json
+
+{
+    "name" : "Oil painting",
+    "slug" : "oil-painting"
+}
+
+
+# DELETE SINGLE SKILLS
+###
+DELETE http://localhost:8000/api/v1/skills/1 HTTP/1.1
