@@ -77,12 +77,12 @@ const Skills = () => {
                                                     {skill.created_at}
                                                 </td>
                                                 <td className="px-6 py-4">
-                                                    <a
-                                                        href="#"
+                                                    <Link
+                                                        to={`/update/${skill.id}`}
                                                         className="px-4 py-1 text-sm text-indigo-600 bg-indigo-200 rounded-full"
                                                     >
                                                         Edit
-                                                    </a>
+                                                    </Link>
                                                 </td>
                                                 <td className="px-6 py-4">
                                                     <a
