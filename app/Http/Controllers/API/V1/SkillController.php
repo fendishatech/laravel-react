@@ -20,7 +20,7 @@ class SkillController extends Controller
     }
 
     public function index () {
-        $skills = Skill::paginate(1);
+        $skills = Skill::paginate(10);
         return response()->json([
             "success" => true,
             "skills" => $skills,
