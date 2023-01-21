@@ -1,26 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useContext} from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import SkillContext from "../../../context/SkillContext";
 
 const Skills = () => {
-    const [skills, setSkills] = useState({});
+
+    const {skills, getSkills} = useContext(SkillContext);
 
     useEffect(() => {
-        const getSkills = async () => {
-            try {
-                const res = await axios.get(
-                    "http://localhost:8000/api/v1/skills"
-                );
-                const skills = res.data.skills.data;
-                console.log(skills);
-                setSkills(skills);
-            } catch (error) {
-                console.log({ error });
-            }
-        };
-
         getSkills();
     }, []);
+    
     return (
         <div className="container flex justify-center mx-auto pt-24">
             <div className="flex flex-col">
