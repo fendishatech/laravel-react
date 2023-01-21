@@ -1,11 +1,11 @@
-import axios from 'axios';
-import React from 'react'
-import { useState } from 'react';
+import React, { useContext } from 'react'
 import { toast } from "react-toastify";
 import {useNavigate} from 'react-router-dom'
+import SkillContext from '../../../context/SkillContext';
 
 const New = () => {
-  const [skill, setSkill] = useState("");
+  const [skill, setSkill] = useState({});
+  const {skill, createSkill} = useContext(SkillContext);
 
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
@@ -15,19 +15,7 @@ const New = () => {
       name : skill,
       slug : skill.toLowerCase().replace(' ','-')
     }
-
-     try {
-      const res = await axios.post('http://localhost:8000/api/v1/skills',data);
-
-     console.log({res});
-     if (res.data.success) {
-      toast(res.data.message);
-      navigate('/')
-     }
-     console.log({res});
-     } catch (error) {
-      console.log({error});
-     }
+    createSkill(data);
   }
 
   return (

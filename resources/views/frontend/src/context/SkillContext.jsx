@@ -8,7 +8,20 @@ export const SkillProvider = ({children }) => {
     const [skills, setSkills] = useState({});
     const [skill, setSkill] = useState({});
 
-    const createSkill = async () => {}
+    const createSkill = async (data) => {
+        try {
+            const res = await axios.post('skills',data);
+      
+           console.log({res});
+           if (res.data.success) {
+            toast(res.data.message);
+            navigate('/')
+           }
+           console.log({res});
+           } catch (error) {
+            console.log({error});
+           }
+    }
 
     const getSkills = async () => {
         try {
