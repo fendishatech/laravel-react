@@ -11,7 +11,7 @@ const AuthContext = createContext({
 // DEFINE PROVIDER
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState({});
-  const [token, _setToken] = useState(123);
+  const [token, _setToken] = useState(localStorage.getItem("ACCESS_TIME"));
 
   const setToken = (token) => {
     _setToken(token);
