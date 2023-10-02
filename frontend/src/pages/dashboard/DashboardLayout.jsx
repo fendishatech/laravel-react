@@ -23,9 +23,9 @@ const DashboardLayout = () => {
           <div className=""></div>
           <div className="">
             Welcome {user.name}
-            <a href="#" onClick={onLogout} className="btn-logout">
+            <button onClick={onLogout} className="btn-logout">
               Logout
-            </a>
+            </button>
           </div>
         </header>
         <main>

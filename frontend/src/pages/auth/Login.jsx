@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 const Login = () => {
   const onSubmit = (ev) => {
     ev.preventDefault();
+    alert("Login Starts");
   };
   return (
     <div className="login-signup-form animated fadeInDown">
