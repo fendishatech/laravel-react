@@ -1,4 +1,4 @@
-import { axios } from "axios";
+import axios from "axios";
 
 const axiosClient = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
@@ -21,7 +21,7 @@ axiosClient.interceptors.response.use(
   (error) => {
     const { response } = error;
 
-    if (response.status == 401) {
+    if (response.status == 422) {
       localStorage.removeItem("ACCESS_TOKEN");
     }
 
