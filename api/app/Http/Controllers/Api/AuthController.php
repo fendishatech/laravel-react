@@ -33,9 +33,10 @@ class AuthController extends Controller
         $credentials = $request->validated();
 
         if (!Auth::attempt($credentials)) {
+            // The login was unsuccessful.
             return response([
                 'message' => "Provided email or password is incorrect."
-            ]);
+            ], 422);
         }
 
         $user = Auth::user();

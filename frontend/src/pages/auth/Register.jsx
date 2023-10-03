@@ -1,15 +1,17 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import axiosClient from "../../api/axios-client";
 import { useStateContext } from "../../context/AuthContext";
 
 const Register = () => {
+  const [errors, setErrors] = useState(null);
+
   const nameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
   const passwordConfirmationRef = useRef();
 
-  const { setUser, setToken } = useStateContext;
+  const { setUser, setToken } = useStateContext();
 
   const onSubmit = (ev) => {
     ev.preventDefault();
@@ -24,6 +26,7 @@ const Register = () => {
     axiosClient
       .post("/register", payload)
       .then(({ data }) => {
+        console.log(data);
         setUser(data.user);
         setToken(data.token);
       })
@@ -32,6 +35,7 @@ const Register = () => {
 
         if (response && response.status == 422) {
           console.log(response.data.errors);
+          setErrors(response.data.errors);
         }
       });
   };
@@ -39,8 +43,16 @@ const Register = () => {
     <div className="login-signup-form animated fadeInDown">
       <div className="form">
         <form onSubmit={onSubmit}>
-          <h1 className="title">Signup for Free</h1>
-
+          <h1 className="title">Sign up for Free</h1>
+          {errors && (
+            <div className="alert">
+              {Object.keys(errors).map((key) => (
+                <p className="" key={key}>
+                  {errors[key][0]}
+                </p>
+              ))}
+            </div>
+          )}
           <input ref={nameRef} type="text" placeholder="Full Name" />
           <input ref={emailRef} type="email" placeholder="Email Address" />
           <input ref={passwordRef} type="password" placeholder="Password" />
